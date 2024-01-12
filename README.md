@@ -4,31 +4,29 @@
 
 ![Managed State Event Loop as Envisioned by AI](docs/managed-state-event-loop.jpg?raw=true)(as envisioned by AI)
 
+This is not just a framework; it's a smooth and effecient development strategy.
 
-With such a small codebase this is less of a framework than it is a development 
-strategy.  However, details matter so here we go...
-
-* _Have you ever needed to do multiple things a once ...or appear to?_
+* _Ever wished you could do multiple things at once or make it look like you can?_
 
 * _Do you need to execute code while reading inputs?_
 
-* _Want to avoid messy, dangerous and expensive global state?_
+* _Want to steer clear of messy, dangerous and expensive global state?_
 
-This is for you, a managed-state event loop.  All you do is worry about what 
+This is for you, a managed-state event loop.  All you need to focus on is what you want
 to do based on the last thing you did.  Everything else is managed, **you
-just write pure stateless functions**!
+just write pure stateless functions** and let the magic happen!
 
-Costing just 200 lisp-cells, this can run at over 2000 functions/second on a
-$7 [AdaFruit Trinkey](https://www.adafruit.com/product/4870) or ~10,000,000 on 
+With a compact code-base of just 200 lisp-cells, this can run at over 2000 functions/second on a
+$7 [AdaFruit Trinkey](https://www.adafruit.com/product/4870) or a whopping 10,000,000 on 
 a 2020-era laptop.
 
 ![managed function state](docs/function-state.svg?raw=true)
 
-You specify how often, and the event loop executes your function passing in the state for you.
+Specify how often, and the event loop executes your function passing in the state for you.
 
 ![event loop](docs/event-loop.svg?raw=true)
 
-Run as many functions as you want, however often you want.
+Run as many functions as you desire, as frequently as you want.
 
 ![multiple functions](docs/multi-functs-sequence.svg?raw=true)
 
@@ -39,7 +37,7 @@ Run as many functions as you want, however often you want.
 
 # Installation - Common Lisp
 
-This works reasonably well with SBCL.  Others not so much due to the lack of
+Works like a charm on SBCL.  Others?  Not so much due to the lack of
 millisecond support.
 
 1. [Install QuickLisp](https://lispcookbook.github.io/cl-cookbook/getting-started.html#install-quicklisp)
