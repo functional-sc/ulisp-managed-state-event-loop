@@ -34,7 +34,7 @@ Run as many functions as you want, however often you want.
 
 # Installation - uLisp
 
-1. Copy the 'LispLibrary.h' file into your uLisp project directory.
+1. Copy the [LispLibrary.h](LispLibrary.h) file into your uLisp project directory.
 2. Enable it like this [http://www.ulisp.com/show?27OV](http://www.ulisp.com/show?27OV)
 
 # Installation - Common Lisp
