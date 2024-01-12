@@ -51,7 +51,7 @@ millisecond support.
     (+ (* 1000 (local-time:timestamp-to-unix tm))) ))
 ```
 
-The rest of the code is [here in `managed-state-event-loop.lisp`](managed-state-event-loop.lisp)
+The rest of the code is in [managed-state-event-loop.lisp](managed-state-event-loop.lisp)
 
 # Usage
 
