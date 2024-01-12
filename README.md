@@ -14,7 +14,7 @@ This is not just a framework; it's a smooth and efficient development strategy.
 
 This is for you, a managed-state event loop.  All you need to focus on is what you want
 to do based on the last thing you did.  Everything else is managed, **you
-just write pure stateless functions** and let the magic happen!
+just write pure stateless functions** and let the magic happen.
 
 With a compact code-base of just 200 lisp-cells, this can run at over 2000 functions/second on a
 $7 [AdaFruit Trinkey](https://www.adafruit.com/product/4870) or a whopping 10,000,000 on 
