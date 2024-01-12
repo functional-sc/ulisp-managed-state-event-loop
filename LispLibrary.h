@@ -1,6 +1,7 @@
 const char LispLibrary[] PROGMEM = R"lisplibrary(
 
 ;; comments confuse uLisp, see README.md
+;; to integrate with uLisp see http://www.ulisp.com/show?27OV
 
 (defun wrap-statetime (number-of-millis fn initial-state)
   (let ((next-time 0)

@@ -1,0 +1,8 @@
+@startuml
+control "Event Loop" as el
+participant "My Function 1" as my1
+el -> el   : wait
+el -> my1  : input state
+my1 -> my1 : execute with state
+el  <- my1 : output state
+@enduml

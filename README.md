@@ -20,4 +20,8 @@ just write pure stateless functions**!
 
 ![managed function state](docs/function-state.svg?raw=true)
 
+You specify how often, and the event loop execurtes your function passing in the state for you.
+
+![event loop](docs/event-loop.svg?raw=true)
+
 
