@@ -51,6 +51,8 @@ millisecond support.
     (+ (* 1000 (local-time:timestamp-to-unix tm))) ))
 ```
 
+The rest of the code is [here in `managed-state-event-loop.lisp`](managed-state-event-loop.lisp)
+
 # Usage
 
 Create a lambda function taking in one parameter of state, which can be
@@ -73,7 +75,7 @@ Pass your function to `run-event-loop` in this format:
 
 ```lisp
 (
- (500         ;; how ofted to run, in milliseconds.  This runs every half-second
+ (500         ;; how often to run, in milliseconds.  This runs every half-second
   my-do-this1 ;; your lambda function
   10000)      ;; initial state
  )
