@@ -1,0 +1,10 @@
+@startuml
+start
+:store first my-function state;
+while (time to execute?)
+  :get my-function state;
+  #lightgreen:execute my-function with state;
+  backward:store my-function state;
+endwhile
+-[hidden]->
+@endulm
