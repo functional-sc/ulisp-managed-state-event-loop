@@ -63,7 +63,7 @@ Your functions do not need to change state, just accept the param and return
 
 ```lisp
 (defvar my-do-this1
-  (lambda (x) 
+  (lambda (x)
     (format t "~a ..~%" x)
     (1+ x) )) ; adds one and returns the state for the next iteration
 ```
@@ -93,7 +93,7 @@ Or here it is without the fancy:
 (run-event-loop '((500 (lambda (x) (format t "~a ..~%" x) (1+ x)) 10000)))
 ```
 
-# Example
+# Example - Timing
 
 ```lisp
 
@@ -137,9 +137,66 @@ Console output:
 10012 ..
 10013 ..
 30001 ..........
-20007 .....
-10014 ..
-10015 ..
-20008 .....
-10016 ..
+```
+
+# Share States with Names!
+
+*"But wait, that's not all!"* 
+
+Use **Shared Named State** to keep your functons small and targeted!  No need
+for your functions to live in a silo or become large and unweildly.  Now they
+can share state in the same easy format.
+
+In the next example, we show addition functions sharing their state by notaing
+a name in the 4th and last optional list item:
+
+```lisp
+;; showcase names: add 1, 2 and 3 respectively
+(defvar my-function-add1 (lambda (x) (format t "~a .~%" x)   (+ 1 x)))
+(defvar my-function-add2 (lambda (x) (format t "~a ..~%" x)  (+ 2 x)))
+(defvar my-function-add3 (lambda (x) (format t "~a ...~%" x) (+ 3 x)))
+
+;;                          millis   lambda-fn          initial   NAME
+(defvar named-state-list '((500      my-function-add1   1000      foo)
+                           (500      my-function-add2   1000      foo)
+                           (500      my-function-add1   8800      bar)
+                           (500      my-function-add3   8800      bar)))
+
+(run-event-loop named-state-list)
+```
+
+![multiple functions](docs/named-state-sequence.svg?raw=true)
+
+Console output:
+
+```shell
+2352> (run-event-loop named-state-list)
+1000 .
+1001 ..
+8800 .
+8801 ...
+1003 .
+1004 ..
+8804 .
+8805 ...
+1006 .
+1007 ..
+8808 .
+8809 ...
+1009 .
+1010 ..
+8812 .
+8813 ...
+1012 .
+1013 ..
+8816 .
+8817 ...
+1015 .
+1016 ..
+8820 .
+8821 ...
+1018 .
+1019 ..
+8824 .
+8825 ...
 ```

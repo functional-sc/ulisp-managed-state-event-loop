@@ -4,18 +4,16 @@
 ;; it returns a function that is scheduled to run at every millisecond-count.
 ;;
 ;; The returned function expects the ongoing millisecond count.  If fired, it
-;; returns the new state, otherwise the old state is stored for the next
-;; iteration and also retruned.
+;; returns the new state, otherwise the old state is returned.
 ;;
-(defun wrap-statetime (number-of-millis fn initial-state)
-  (let ((next-time 0)
-        (state     initial-state)) 
-    (lambda (current-time)
-      (if (>= current-time next-time) 
+(defun wrap-fn-in-time (number-of-millis fn)
+  (let ((next-time 0)) 
+    (lambda (current-time state)
+      (if (> current-time next-time) 
           (progn
-            (setq next-time (+ number-of-millis current-time))
-            (setq state (funcall fn state)) ))
-      state)))
+            (setq next-time (+ number-of-millis current-time)) 
+            (funcall fn state) )
+          state))))
 
 ;;
 ;; Converts a list to an array the hard way, a complete Common Lisp
@@ -38,12 +36,32 @@
 ;; relies on 'wrap-statetime' to execute after the millis have expired and
 ;; passes in the new computed state
 ;;
-(defun run-event-loop (time-fn-state-list)
-  (let* ((len         (length time-fn-state-list))
-         (fn-array    (list-to-array (mapcar (lambda (fn-t)
-                                               (wrap-statetime (first fn-t) (second fn-t) (third fn-t)) )
-                                             time-fn-state-list))) )
-    (loop
-       (dotimes (i len) 
-         (funcall (aref fn-array i) (millis)) ))))
+;; 
+;; Optionally use a named-state to share the states across functions:
+;;
+;;                                          millis   lambda-fn     init  NAME
+;;  (defvar time-fn-state-list (list (list 500      my-do-this1   10000  foo)
+;;                                   (list 1000     my-do-this2   20000  foo)
+;;                                   (list 7000     my-do-this3   30000  bar)))
+;;
 
+(defun run-event-loop (time-fn-state-list)
+  (let* ((len                (length time-fn-state-list))
+         (fn-array           (list-to-array (mapcar (lambda (fn-t) (wrap-fn-in-time (first fn-t) (second fn-t))) time-fn-state-list)))
+         (state-offset-array (make-array len)) 
+         (state-array        (make-array len)) 
+         (name-offset-alist  nil) ) 
+    
+    (dotimes (i len)
+      (setf (aref state-array i) (nth 2 (nth i time-fn-state-list)))
+      (let ((this-name (nth 3 (nth i time-fn-state-list))))
+        (setf name-offset-alist   (cons (cons this-name i) name-offset-alist))
+        (setf (aref state-offset-array i) (if (car (assoc this-name (reverse name-offset-alist)))
+                                             (cdr (assoc this-name (reverse name-offset-alist)))
+                                             i)) ))
+
+    (loop 
+       (dotimes (i len) 
+         (setf (aref state-array (aref state-offset-array i))
+               (funcall (aref fn-array i) (millis) (aref state-array
+                                                    (aref state-offset-array i) ))) ))))
