@@ -11,28 +11,28 @@ participant "My Function: add 1" as my4
 participant "My Function: add 3" as my3
 end box
 
-el  -> my1 : input 0
+el  -> my1 : input 1000
 my1 -> my1 : add 1
-el  <- my1 : return 1
+el  <- my1 : return 1001
 
 
-el ->  my2 : input 1
+el ->  my2 : input 1001
 my2 -> my2 : add 2
-el  <- my2 : return 3
+el  <- my2 : return 1003
 
 
-el -> my1  : input 3
+el -> my1  : input 1003
 my1 -> my1 : add 1
-el  <- my1 : return 4
+el  <- my1 : return 1004
 
 
-el ->  my3 : input 0
+el ->  my3 : input 8800
 my3 -> my3 : add 3
-el  <- my3 : return 3
+el  <- my3 : return 8803
 
-el ->  my4 : input 3
+el ->  my4 : input 8803
 my4 -> my4 : add 1
-el  <- my4 : return 4
+el  <- my4 : return 8804
 @enduml
 
 
