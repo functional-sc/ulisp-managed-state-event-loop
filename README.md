@@ -150,7 +150,9 @@ for your functions to live in a silo or become large and unweildly.  Now they
 can share state in the same easy format.
 
 In the next example, we show addition functions sharing their state by notating
-a name in the 4th optional list item:
+a name in the 4th optional list item.
+
+This allows `my-function-add1` and `my-function-add2` to share the same state, in this case 1000 and the same for last two functions.  The name can be any symbol and it is not displayed.
 
 ```lisp
 ;; showcase names: add 1, 2 and 3 respectively
