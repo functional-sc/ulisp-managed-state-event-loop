@@ -62,7 +62,7 @@ Your functions do not need to change state, just accept the param and return
 `nil`.
 
 ```lisp
-(defvar my-do-this1
+(defvar my-function1
   (lambda (x)
     (format t "~a ..~%" x)
     (1+ x) )) ; adds one and returns the state for the next iteration
@@ -74,7 +74,7 @@ Pass your function to `run-event-loop` in this format:
 ```lisp
 (
  (500         ;; how often to run, in milliseconds.  This runs every half-second
-  my-do-this1 ;; your lambda function
+  my-function1 ;; your lambda function
   10000)      ;; initial state
  )
 ```
@@ -82,7 +82,7 @@ Pass your function to `run-event-loop` in this format:
 Pass it to `run-event-loop`:
 
 ```lisp
-(defvar my-timed-fns '((500      my-do-this1   10000)))
+(defvar my-timed-fns '((500      my-function1   10000)))
 
 (run-event-loop my-timed-fns)
 ```
@@ -98,14 +98,14 @@ Or here it is without the fancy:
 ```lisp
 
 ;; every function expects a state, you dont need to do anything with it
-(defvar my-do-this1 (lambda (x) (format t "~a ..~%" x) (1+ x)))
-(defvar my-do-this2 (lambda (x) (format t "~a .....~%" x) (1+ x)))
-(defvar my-do-this3 (lambda (x) (format t "~a ..........~%" x) (1+ x)))
+(defvar my-function1 (lambda (x) (format t "~a ..~%" x) (1+ x)))
+(defvar my-function2 (lambda (x) (format t "~a .....~%" x) (1+ x)))
+(defvar my-function3 (lambda (x) (format t "~a ..........~%" x) (1+ x)))
 
-;;                      millis   lambda-fn     initial state
-(defvar my-timed-fns '((500      my-do-this1   10000)
-                       (1000     my-do-this2   20000)
-                       (7000     my-do-this3   30000)))
+;;                      millis   lambda-fn      initial state
+(defvar my-timed-fns '((500      my-function1   10000)
+                       (1000     my-function2   20000)
+                       (7000     my-function3   30000)))
 
 (run-event-loop my-timed-fns)
 ```
