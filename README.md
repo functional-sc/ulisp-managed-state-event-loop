@@ -147,7 +147,7 @@ Use **Shared Named State** to keep your functons small and targeted!  No need
 for your functions to live in a silo or become large and unweildly.  Now they
 can share state in the same easy format.
 
-In the next example, we show addition functions sharing their state by notaing
+In the next example, we show addition functions sharing their state by notating
 a name in the 4th and last optional list item:
 
 ```lisp
