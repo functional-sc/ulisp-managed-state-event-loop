@@ -148,7 +148,7 @@ for your functions to live in a silo or become large and unweildly.  Now they
 can share state in the same easy format.
 
 In the next example, we show addition functions sharing their state by notating
-a name in the 4th and last optional list item:
+a name in the 4th optional list item:
 
 ```lisp
 ;; showcase names: add 1, 2 and 3 respectively
