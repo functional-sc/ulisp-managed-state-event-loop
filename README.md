@@ -35,6 +35,8 @@ Run as many functions as you desire, as frequently as you want.
 1. Copy the [LispLibrary.h](LispLibrary.h) file into your uLisp project directory.
 2. Enable it like this [http://www.ulisp.com/show?27OV](http://www.ulisp.com/show?27OV)
 
+3. Or just [copy the code](managed-state-event-loop.lisp), it's only 35 lines without comments.
+
 # Installation - Common Lisp
 
 Works like a charm on SBCL.  Others?  Not so much due to the lack of
