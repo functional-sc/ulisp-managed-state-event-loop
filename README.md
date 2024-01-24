@@ -4,7 +4,7 @@
 
 ![Managed State Event Loop as Envisioned by AI](docs/managed-state-event-loop.jpg?raw=true)(as envisioned by AI)
 
-This is not just a framework; it's a smooth and efficient development strategy.
+This is not just a framework: it's a smooth and efficient development strategy.
 
 * _Ever wished you could do multiple things at once or make it look like you can?_
 
