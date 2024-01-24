@@ -75,9 +75,9 @@ Pass your function to `run-event-loop` in this format:
 
 ```lisp
 (
- (500         ;; how often to run, in milliseconds.  This runs every half-second
+ (500          ;; how often to run, in milliseconds.  This runs every half-second
   my-function1 ;; your lambda function
-  10000)      ;; initial state
+  10000)       ;; initial state
  )
 ```
 
