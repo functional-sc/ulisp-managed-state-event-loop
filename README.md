@@ -84,7 +84,7 @@ Pass your function to `run-event-loop` in this format:
 Pass it to `run-event-loop`:
 
 ```lisp
-(defvar my-timed-fns '(list (list 500      my-function1   10000)))
+(defvar my-timed-fns (list (list 500      my-function1   10000)))
 
 (run-event-loop my-timed-fns)
 ```
@@ -92,7 +92,7 @@ Pass it to `run-event-loop`:
 Or here it is without the fancy:
 
 ```lisp
-(run-event-loop '(list (list 500 (lambda (x) (format t "~a ..~%" x) (1+ x)) 10000)))
+(run-event-loop (list (list 500 (lambda (x) (format t "~a ..~%" x) (1+ x)) 10000)))
 ```
 
 # Example - Timing
