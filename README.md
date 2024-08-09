@@ -84,7 +84,7 @@ Pass your function to `run-event-loop` in this format:
 Pass it to `run-event-loop`:
 
 ```lisp
-(defvar my-timed-fns '((500      my-function1   10000)))
+(defvar my-timed-fns '(list (list 500      my-function1   10000)))
 
 (run-event-loop my-timed-fns)
 ```
@@ -92,7 +92,7 @@ Pass it to `run-event-loop`:
 Or here it is without the fancy:
 
 ```lisp
-(run-event-loop '((500 (lambda (x) (format t "~a ..~%" x) (1+ x)) 10000)))
+(run-event-loop '(list (list 500 (lambda (x) (format t "~a ..~%" x) (1+ x)) 10000)))
 ```
 
 # Example - Timing
@@ -104,10 +104,10 @@ Or here it is without the fancy:
 (defvar my-function2 (lambda (x) (format t "~a .....~%" x) (1+ x)))
 (defvar my-function3 (lambda (x) (format t "~a ..........~%" x) (1+ x)))
 
-;;                      millis   lambda-fn      initial state
-(defvar my-timed-fns '((500      my-function1   10000)
-                       (1000     my-function2   20000)
-                       (7000     my-function3   30000)))
+;;                               millis  lambda-fn      initial state
+(defvar my-timed-fns (list (list 500     my-function1   10000)
+                           (list 1000    my-function2   20000)
+                           (list 7000    my-function3   30000)))
 
 (run-event-loop my-timed-fns)
 ```
@@ -160,11 +160,11 @@ This allows `my-function-add1` and `my-function-add2` to share the same state, i
 (defvar my-function-add2 (lambda (x) (format t "~a ..~%" x)  (+ 2 x)))
 (defvar my-function-add3 (lambda (x) (format t "~a ...~%" x) (+ 3 x)))
 
-;;                          millis   lambda-fn          initial   NAME
-(defvar named-state-list '((500      my-function-add1   1000      foo)
-                           (500      my-function-add2   1000      foo)
-                           (500      my-function-add1   8800      bar)
-                           (500      my-function-add3   8800      bar)))
+;;                                   millis  lambda-fn          initial   NAME
+(defvar named-state-list (list (list 500     my-function-add1   1000      foo)
+                               (list 500     my-function-add2   1000      foo)
+                               (list 500     my-function-add1   8800      bar)
+                               (list 500     my-function-add3   8800      bar)))
 
 (run-event-loop named-state-list)
 ```
